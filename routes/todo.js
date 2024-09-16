@@ -6,6 +6,9 @@ router.get("/", async(req, res) => {
     const allTodo = await Todo.find();
     res.render("index", {todo: allTodo})
 })
+router.get("/about", async(req, res) => {
+  res.render("about")
+})
 // routes
 router
   .post("/add/todo", (req, res) => {
@@ -21,6 +24,18 @@ router
       })
       .catch((err) => console.log(err));
   })
+
+  .post('/complete/todo/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { completed } = req.body;
+        
+        await Todo.findByIdAndUpdate(id, { completed });
+        res.json({ success: true });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to update task' });
+    }
+})
 
   .get("/edit/todo/:_id", async (req, res) => {
     const { _id } = req.params;
