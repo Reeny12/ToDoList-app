@@ -1,6 +1,7 @@
 <%- include("./partials/header")  %>
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="/">Todo App</a>
+    <a class="navbar-brand" href="/about">About</a>
 </nav>
 
 <div class="container mt-5">
@@ -9,17 +10,48 @@
         <input type="submit" value="Add Todo" class="btn btn-md btn-primary mx-2">
     </form>
 
-
-    <ul class="list-group my-5">
+    <ul class="list-group my-5"> 
         <% todo.forEach(todos => { %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span><%= todos.todo %></span>
+            <div class="d-flex align-items-center">
+                <input type="checkbox" id="todo_<%= todos._id %>" class="form-check-input me-2">
+                <label for="todo_<%= todos._id %>"><%= todos.todo %></label>
+                
+            </div>
             <div class="btn-group">
                 <a href="/delete/todo/<%= todos._id %>" class="btn btn-danger btn-sm">Delete</a>
-                <a href="/edit/todo/<%= todos._id %>" class="btn btn-success btn-sm">edit</a>
+                <a href="/edit/todo/<%= todos._id %>" class="btn btn-success btn-sm">Edit</a>
             </div>
         </li>
         <% }) %>
     </ul>
-
+    
+    <script>
+        function markCompleted(todoId, isCompleted) {
+            console.log("Triggered markCompleted function");
+            console.log("Todo ID:", todoId);
+            console.log("Completed Status:", isCompleted);
+        
+            fetch(`/complete/todo/${todoId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ completed: isCompleted })  // Send completed status in body
+            })
+            .then(response => {
+                console.log("Response received:", response);
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    console.log('Task status updated:', data);
+                } else {
+                    console.error('Failed to update task:', data);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        </script>
+        
 </div>
