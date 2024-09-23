@@ -9,6 +9,7 @@ router.get("/signup", (req, res) => {
     res.render("signup");
 });
 
+//Encrypts the password
 router.post("/signup", async (req, res) => {
     const { username, password } = req.body;
     const existingUser = await User.findOne({ username });
@@ -30,6 +31,7 @@ router.get("/login", (req, res) => {
     res.render("login");
 });
 
+//Encrypts the password a user has entered and compares it to the one in the database
 router.post("/login", async (req, res) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
@@ -55,7 +57,7 @@ function requireAuth(req, res, next) {
     next();
 }
 
-// Dashboard route (protected)
+// Dashboard route 
 router.get("/", requireAuth, (req, res) => {
     res.render("/", { username: req.session.userId });
 });
