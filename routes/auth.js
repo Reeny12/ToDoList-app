@@ -11,15 +11,15 @@ router.get("/signup", (req, res) => {
 
 //Encrypts the password
 router.post("/signup", async (req, res) => {
-    const { username, password } = req.body;
-    const existingUser = await User.findOne({ username });
+    const { username, email, password  } = req.body;
+    const existingUser = await User.findOne({ email });
 
     if (existingUser) {
         return res.status(400).send("User already exists");
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
     req.session.userId = newUser._id;
@@ -33,8 +33,8 @@ router.get("/login", (req, res) => {
 
 //Encrypts the password a user has entered and compares it to the one in the database
 router.post("/login", async (req, res) => {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const { username, email, password} = req.body;
+    const user = await User.findOne({ email });
 
     if (!user) {
         return res.status(400).send("Invalid credentials");
