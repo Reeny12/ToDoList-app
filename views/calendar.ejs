@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <style>
+        body{
+            background-color: rgb(71, 92, 85);
+        }
+      .calendar {
+          background-color: #4CAF50;
+          max-width: 600px;
+          margin: 0 auto;
+          text-align: center;
+      }
+      .weekdays, .days {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 5px;
+      }
+      .day {
+          height: 100px;
+          border: 1px solid #ddd;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          padding: 5px;
+      }
+      .task {
+          background-color: #ffeb3b;
+          padding: 5px;
+          margin-top: 5px;
+          border-radius: 5px;
+          font-size: 0.8em;
+          word-wrap: break-word;
+      }
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-dark">
+        <a class="navbar-brand" href="/">Home</a>
+        <a class="navbar-brand" href="/about">About</a>
+        <a class="navbar-brand" href="/calendar">Calendar</a>
+    </nav>
+  <div class="calendar">
+      <div class="month">
+          <h2><%= new Date(currentYear, currentMonth - 1).toLocaleString('default', { month: 'long' }) %> <%= currentYear %></h2>
+          <h2>Current Time: <%= hours %>:<%= minutes %>:<%= seconds %></h2>
+      </div>
+      <div class="weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+      </div>
+      <div class="days">
+        <% for (let i = 1; i <= daysInMonth; i++) { %>
+            <div class="day">
+                <%= i %>
+                <% let date = new Date(currentYear, currentMonth - 1, i); %>
+                <% todos.forEach(todo => { 
+                    if (new Date(todo.dueDate).getDate() === i && new Date(todo.dueDate).getMonth() === currentMonth - 1) { %>
+                        <div class="task">
+                            <%= todo.todo %> - Due at <%= todo.dueDate.toLocaleTimeString() %>
+                        </div>
+                    <% } 
+                    
+                }) %>
+            </div>
+        <% } %>
+    </div>
+</div>
+  
+  <div class="navigation">
+    <!-- Navigation for Previous Month -->
+    <a href="/calendar/<%= currentMonth === 1 ? currentYear - 1 : currentYear %>/<%= currentMonth === 1 ? 12 : currentMonth - 1 %>">Previous Month</a> 
+    |
+    <!-- Navigation for Next Month -->
+    <a href="/calendar/<%= currentMonth === 12 ? currentYear + 1 : currentYear %>/<%= currentMonth === 12 ? 1 : currentMonth + 1 %>">Next Month</a>
+  </div>
+</body>
+</html>
