@@ -5,6 +5,7 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  dueDate: { type: Date },
   completed: { type: Boolean, default: false },
 });
 

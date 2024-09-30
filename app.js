@@ -7,8 +7,13 @@ const methodOverride = require("method-override");
 
 const app = express();
 
-// conenction to mongodb
-mongoose.connect("mongodb://localhost:27017/Todolist")
+/*// conenction to mongodb
+mongoose.connect("mongodb://localhost:27017/Todolist", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});*/
+
+mongoose.connect("mongodb://localhost:27017/Todolist");
 
 // middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -20,7 +25,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-
 
 
 // routes
