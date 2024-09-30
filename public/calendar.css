@@ -1,0 +1,41 @@
+        body{
+            background-color: whitesmoke;
+        }
+        .nav{
+            background-color: #ddd;
+        }
+        
+      .calendar {
+          background-color: white;
+          max-width: 600px;
+          margin: 0 auto;
+          text-align: center;
+      }
+      .weekdays, .days {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 5px;
+      }
+      .day {
+          height: 100px;
+          border: 1px solid #ddd;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          padding: 5px;
+      }
+      .task {
+          background-color: #ffeb3b;
+          padding: 5px;
+          margin-top: 5px;
+          border-radius: 5px;
+          font-size: 0.8em;
+          word-wrap: break-word;
+      }
+      .clock {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center;     /* Center vertically (if necessary) */
+        margin-top: 20px;
+      }

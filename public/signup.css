@@ -1,0 +1,87 @@
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      .signup-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .signup-container {
+        padding: 20px;
+        width: 300px;
+        margin-right: 20px;
+      }
+      
+      .signup-container h2 {
+        margin-bottom: 20px;
+      }
+      
+      .signup-container input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      
+      .signup-container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .signup-container button:hover {
+        background-color: #0056b3;
+      }
+      
+      .signup-container a {
+        color: #007BFF;
+        text-decoration: none;
+      }
+      
+      .signup-container a:hover {
+        text-decoration: underline;
+      }
+      
+      .signup-image {
+        width: 300px; /* Adjust the width of the image */
+      }
+      
+      .signup-image img {
+        width: 100%; /* Make sure the image takes full width of its container */
+        height: auto; /* Keep the aspect ratio of the image */
+        border-radius: 10px;
+      }
+      
+      @media (max-width: 768px) {
+        .signup-wrapper {
+          flex-direction: column; /* Stack the form and image on smaller screens */
+        }
+      
+        .signup-image {
+          margin-top: 20px;
+        }
+      }
+      

@@ -1,0 +1,17 @@
+body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+}
+.nav{
+    box-shadow: 0 rgb(245, 243, 243);
+}
+.container {
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+form input[type="text"], 
+form input[type="date"] {
+    margin-right: 10px;
+}
